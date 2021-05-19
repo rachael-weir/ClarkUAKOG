@@ -33,3 +33,11 @@ app.listen(3000, function () {
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/public/index.html");
 });
+
+app.get('/login', (req, res) => {
+    if (req.query.error) {
+        res.redirect("/login.html?error=" + req.query.error);
+    } else {
+        res.redirect("/login.html");
+    }
+});
