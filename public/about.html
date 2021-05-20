@@ -2,9 +2,97 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>AKOG | About</title>
+
+    <!--    css style-->
+    <link rel="stylesheet" href="css/index.css">
+
+    <!--    Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+
+    <!--    jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!--    Datepicker-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="js/about.js" defer></script>
 </head>
-<body>
+</head>
+<body class="container">
+
+<section id="header_section">
+    <nav class="navbar navbar-expand-lg nav-custom">
+        <div class="container-fluid">
+            <div class="navbar-nav">
+                <a class="navbar-brand" href="/">All Kinds of Girls</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active about_page" aria-current="page" href="/about">About</a>
+                    <a class="nav-link active program_page" aria-current="page" href="/program">Program</a>
+                    <a class="nav-link active steering_page" aria-current="page" href="/steeringcommittee">Steering Committee</a>
+                    <a class="nav-link active join_page" aria-current="page" href="/join">Join Us</a>
+                    <a class="nav-link active" aria-current="page" href="/contact">Contact Us</a>
+                    <a class="nav-link active" aria-current="page" href="/social">Social Media</a>
+                    <a class="nav-link active login_page" aria-current="page" href="/login">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<div id="carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="img/carousel_1.PNG" class="d-block w-100">
+        </div>
+        <div class="carousel-item">
+            <img src="img/carousel_2.PNG" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="img/carousel_3.PNG" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="img/carousel_4.PNG" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="img/carousel_5.PNG" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<img src='img/current_logo.PNG' class='akog_logo_about'/>
+
+<h1 class="d-flex justify-content-center">About AKOG</h1>
+
+<section id="about_body">
+    <div class="d-flex justify-content-center row about">
+
+    </div>
+</section>
+
+<footer id="footer">
+
+    <p>All Kinds of Girls @ Clark University</p>
+    <p>© Copyright 2021</p>
+
+</footer>
 
 </body>
 </html>

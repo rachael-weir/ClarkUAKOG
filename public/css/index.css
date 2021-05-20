@@ -6,3 +6,97 @@
     --maximum-yellow-red: #f6bd60;
     --morning-blue: #84a59d;
 }
+
+nav{
+    background-color: var(--pink-lavender);
+}
+
+nav a{
+    color: black;
+}
+
+h1 {
+    font-family: 'Balsamiq Sans', sans-serif;
+    padding: 2%;
+}
+
+h3 {
+    font-family: 'Balsamiq Sans', sans-serif;
+    text-align: center;
+}
+
+p {
+    font-family: 'Balsamiq Sans', sans-serif;
+    text-align: center;
+}
+
+.about_col p{
+    padding: 2%;
+}
+
+a{
+    font-family: 'Balsamiq Sans', sans-serif;
+}
+
+label {
+    font-family: 'Balsamiq Sans', sans-serif;
+}
+
+ol {
+    font-family: 'Balsamiq Sans', sans-serif;
+}
+
+#akog_info img{
+    margin-top: 2%;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.akog_logo_about {
+    margin-top: 2%;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.akog_logo_program {
+    margin-top: 2%;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.akog_logo_general {
+    margin-top: 2%;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.akog_logo_login {
+    margin-top: 2%;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#footer{
+    font-family: 'Balsamiq Sans', sans-serif;
+    padding: 2%;
+}

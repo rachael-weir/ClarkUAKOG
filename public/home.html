@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>AKOG @ Clark U</title>
 
     <!--    css style-->
     <link rel="stylesheet" href="css/index.css">
@@ -14,6 +14,10 @@
             integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
             crossorigin="anonymous"></script>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+
+
     <!--    jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -24,25 +28,76 @@
 </head>
 <body class="container">
 <section id="header_section">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg nav-custom">
         <div class="container-fluid">
             <div class="navbar-nav">
                 <a class="navbar-brand" href="/">All Kinds of Girls</a>
             </div>
-            <div class="navbar-nav navbar-right">
-                <a class="nav-link active login" href="/about">About</a>
-                <a class="nav-link active logout" href="/program">Program</a>
-                <a class="nav-link active logout" href="/steeringcommittee">Steering Committee</a>
-                <a class="nav-link active logout" href="/join">Join Us</a>
-                <a class="nav-link active login" href="/login">Sign In</a>
-                <a class="nav-link active logout" href="/social">Social Media</a>
-                <a class="nav-link active logout" href="/contact">Contact Us</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active about_page" aria-current="page" href="/about">About</a>
+                    <a class="nav-link active program_page" aria-current="page" href="/program">Program</a>
+                    <a class="nav-link active steering_page" aria-current="page" href="/steeringcommittee">Steering Committee</a>
+                    <a class="nav-link active join_page" aria-current="page" href="/join">Join Us</a>
+                    <a class="nav-link active" aria-current="page" href="/contact">Contact Us</a>
+                    <a class="nav-link active" aria-current="page" href="/social">Social Media</a>
+                    <a class="nav-link active login_page" aria-current="page" href="/login">Sign In</a>
+                </div>
             </div>
         </div>
     </nav>
 </section>
-<section id="akog_info">
 
+<div id="carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="img/carousel_1.PNG" class="d-block w-100">
+        </div>
+        <div class="carousel-item">
+            <img src="img/carousel_2.PNG" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="img/carousel_3.PNG" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="img/carousel_4.PNG" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="img/carousel_5.PNG" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<h1 class="d-flex justify-content-center">All Kinds of Girls @ Clark University</h1>
+
+<section id="akog_info">
+    <div class="grid">
+        <div class="row d-flex justify-content-center about_info">
+
+        </div>
+        <div class="row d-flex justify-content-center program_info">
+
+        </div>
+        <div class="row contact_and_social">
+
+        </div>
+    </div>
 </section>
+
+<footer id="footer">
+
+    <p>All Kinds of Girls @ Clark University</p>
+    <p>© Copyright 2021</p>
+
+</footer>
+
 </body>
 </html>
