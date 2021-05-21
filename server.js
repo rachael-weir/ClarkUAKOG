@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require("express");
 const bodyParser = require('body-parser');
+const csvParse = require('csv-parse');
 const mongoose = require('mongoose');
 //Add sessions
 const session = require('express-session');
@@ -22,8 +23,21 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Configure Mongoose
-mongoose.connect('mongodb://localhost:27017/steeringCommitteeDB', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/steeringCommitteeDB', {useNewUrlParser: true, useUnifiedTopology: true}, function () {
+    console.log("db connection successful 2");
+});
 mongoose.set("useCreateIndex", true);
+
+const memberSchema = {
+    title: String,
+    name: String,
+    year: String,
+    major: String,
+    bio: String,
+    url: String
+};
+
+const Member = mongoose.model('Member', memberSchema);
 
 const userSchema = new mongoose.Schema(
     {
@@ -59,6 +73,22 @@ app.listen(3000, function () {
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/public/home.html");
+});
+
+app.get("/get_all_members", function (req, res) {
+    Member.find(function (err, data) {
+        if (err) {
+            res.send({
+                "message": "error",
+                "data": []
+            });
+        } else {
+            res.send({
+                "message": "success",
+                "data": data
+            })
+        }
+    });
 });
 
 app.get('/login', (req, res) => {
@@ -106,8 +136,24 @@ app.get('/join', function (req, res) {
     res.sendFile(__dirname + "/public/join.html");
 });
 
-app.get('/steeringcommittee', function (req, res) {
-    res.sendFile(__dirname + "/public/steeringcommittee.html");
+app.get('/mentor', function (req, res) {
+    res.sendFile(__dirname + "/public/mentor.html");
+});
+
+app.get('/mentee', function (req, res) {
+    res.sendFile(__dirname + "/public/mentee.html");
+});
+
+app.get('/steeringcommittee_list', function (req, res) {
+    res.sendFile(__dirname + "/public/steeringcommittee_list.html");
+});
+
+app.get('/steeringcommittee_edit', function (req, res) {
+    res.sendFile(__dirname + "/public/steeringcommittee_edit.html");
+});
+
+app.get('/steeringcommittee_detail', function (req, res) {
+    res.sendFile(__dirname + "/public/steeringcommittee_detail.html");
 });
 
 app.get('/contact', function (req, res) {

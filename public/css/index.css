@@ -5,6 +5,12 @@
     --light-coral: #f28482;
     --maximum-yellow-red: #f6bd60;
     --morning-blue: #84a59d;
+    --tea-green: #caffbf;
+}
+
+.btn {
+    background-color: var(--pink-lavender);
+    font-family: 'Balsamiq Sans', sans-serif;
 }
 
 nav{
@@ -94,6 +100,35 @@ ol {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.akog_logo_mentor {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.akog_logo_mentee {
+    margin-top: 2%;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.odd_img {
+    justify-content: left;
+}
+
+.even_img {
+    justify-content: right;
 }
 
 #footer{

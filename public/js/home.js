@@ -53,17 +53,17 @@ $('.social_insta').append("<p>Instagram: @clarkuakog</p>");
 $('.social_fb').append("<p>Facebook: @clarkuAKOG</p>");
 
 function onAbout() {
-    location.replace("http://localhost:3000/about");
+    location.href = "about";
 }
 
 function onProgram() {
-    location.replace("http://localhost:3000/program");
+    location.href = "program";
 }
 
 function onContact() {
-    location.replace("http://localhost:3000/contact");
+    location.href = "contact";
 }
 
 function onSocial() {
-    location.replace("http://localhost:3000/social");
+    location.href = "social";
 }
