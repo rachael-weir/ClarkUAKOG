@@ -124,6 +124,40 @@ app.post('/login', (req, res) => {
     )
 });
 
+app.post('/delete_member_by_id', (req, res) => {
+    console.log("deletemember2");
+    Member.deleteOne(
+        {"_id": req.body._id},
+        {},
+        (err) => {
+            if (err){
+                res.send({"message":"database error"});
+            }
+            else {
+                res.send({"message": "success"});
+            }
+        }
+    )
+});
+
+app.get('/get_member_by_id',
+    function (req, res) {
+        console.log(req.query.member_id);
+        Member.find({"_id": req.query.member_id}, function (err, data) {
+            if (err || data.length === 0) {
+                res.send({
+                    "message": "internal database error",
+                    "data": {}
+                });
+            } else {
+                res.send({
+                    "message": "success",
+                    "data": data[0]
+                });
+            }
+        });
+    });
+
 app.get('/about', function (req, res) {
     res.sendFile(__dirname + "/public/about.html");
 });

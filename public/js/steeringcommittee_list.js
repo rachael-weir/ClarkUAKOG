@@ -1,60 +1,53 @@
+
 function showList(members) {
-    console.log("loading members");
     $('#sc_list').empty();
-    console.log(members.length);
 
     for (let i = 0; i < members.length; i++) {
+        console.log(members[i]);
         $('#sc_list').append("<li class='list-group-item'></li>");
-        $('#sc_list li').append("<div class='row'></div>");
     }
 
-    $('#sc_list .row').addClass(function (idx) {
+    $('#sc_list li')
+        .attr("value", function (idx) {
+            return members[idx]._id;
+        })
+        .append("<div class='row'></div>");
+
+    /*$('#sc_list .row').addClass(function (idx) {
         if (idx % 2 === 0) {
-            return 'even_img';
+            $('#sc_list .row')
+                .append("<div class='col-lg-9 d-flex justify-content-center infoDiv_col'></div>")
+                .append("<div class='col-lg-3 imgDiv' aria-rowspan='4'></div>");
         } else {
-            return 'odd_img';
+            $('#sc_list .row').append("<div class='col-lg-3 imgDiv' aria-rowspan='4'></div>")
+                .append("<div class='col-lg-9 d-flex justify-content-center infoDiv_col'></div>");
         }
-    });
-
-    $('#car_list .row')
-        .append("<div class='col-lg-9 d-flex justify-content-center infoDiv'></div>")
-        .append("<div class='col-lg-3 imgDiv'></div>");
-
-    $('.infoDiv').append(function (idx) {
-        return `<h3 class="member_title">${members[idx].title}</h3>`;
-    });
-
-    $('.infoDiv').append(function (idx) {
-        return `<p class="member_name">${members[idx].name}</p>`;
-    });
-
-    $('.infoDiv').append(function (idx) {
-        return `<p class="member_year">${members[idx].year}</p>`;
-    });
-
-    $('.infoDiv').append(function (idx) {
-        return `<p class="member_major">${members[idx].major}</p>`;
-    });
-
-    $('.infoDiv').append(function (idx) {
-        return `<p class="member_bio">${members[idx].bio}</p>`;
-    });
-
-    $('.infoDiv').append("<div class='row buttonDiv'></div>");
-
-    $('.buttonDiv').append(function (idx) {
-            return `<button type="button" class="btn btn-outline-primary showMore_btn">Delete Member</button>`
-        });
-
-    $('.buttonDiv')
-        .append(function (idx) {
-            return `<button type="button" class="btn btn-outline-primary showMore_btn">Edit Member</button>`
-        });
-
-/*    $('.showMore_btn').on('click', function () {
-        const car_id = $(this).parents('li').attr("value");
-        location.href = "detail.html?car_id=" + car_id;
     });*/
+
+    /*$('#sc_list .row')
+        .append("<div class='col-lg-9 d-flex justify-content-center infoDiv_col'></div>")
+        .append("<div class='col-lg-3 imgDiv'></div>");*/
+
+    /*$('.infoDiv_col').append("<div class='row info_title'></div>")
+        .append("<div class='row info_name'></div>")
+        .append("<div class='row info_year'></div>")
+        .append("<div class='row info_major'></div>");*/
+
+    $('.infoDiv_col_title').append(function (idx) {
+        return `<h3 class="member_title">${members[idx]?.title}</h3>`;
+    });
+
+    $('.infoDiv_col_name').append(function (idx) {
+        return `<p class="member_name">${members[idx]?.name}</p>`;
+    });
+
+    $('.infoDiv_col_year').append(function (idx) {
+        return `<p class="member_year">${members[idx]?.year}</p>`;
+    });
+
+    $('.infoDiv_col_major').append(function (idx) {
+        return `<p class="member_major">${members[idx]?.major}</p>`;
+    });
 }
 
 $.getJSON("/get_all_members").done(function (data) {
