@@ -133,5 +133,10 @@ ol {
 
 #footer{
     font-family: 'Balsamiq Sans', sans-serif;
+    background-color: var(--pink-lavender);
     padding: 2%;
+}
+
+html{
+    background-color: var(--baby-pink);
 }
