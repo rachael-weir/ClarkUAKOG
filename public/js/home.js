@@ -67,3 +67,15 @@ function onContact() {
 function onSocial() {
     location.href = "social";
 }
+
+$(document).ready(function (){
+    $.getJSON('/get_current_user').done(function (data){
+        console.log(data);
+        if (data['message'] === 'success'){
+            console.log("fuck yeah");
+            console.log(data['data']);
+        }else{
+            console.log("you thought");
+        }
+    });
+});

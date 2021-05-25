@@ -50,10 +50,6 @@ const userSchema = new mongoose.Schema(
         password:{
             type: String,
             require: true
-        },
-        fullname:{
-            type: String,
-            require: true
         }
     }
 );
@@ -89,6 +85,21 @@ app.get("/get_all_members", function (req, res) {
             })
         }
     });
+});
+
+app.get('/get_current_user', function (req,res){
+    if (req.isAuthenticated()){
+        console.log(req.user);
+        res.send({
+            message: "success",
+            data: req.user
+        });
+    }else{
+        res.send({
+            message: "no login",
+            data: {}
+        });
+    }
 });
 
 app.get('/login', (req, res) => {
