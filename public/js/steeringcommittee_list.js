@@ -1,9 +1,7 @@
-
 function showList(members) {
     $('#sc_list').empty();
 
     for (let i = 0; i < members.length; i++) {
-        console.log(members[i]);
         $('#sc_list').append("<li class='list-group-item'></li>");
     }
 
@@ -13,40 +11,45 @@ function showList(members) {
         })
         .append("<div class='row'></div>");
 
-    /*$('#sc_list .row').addClass(function (idx) {
+    /*$('#car_list .row').addClass(function (idx) {
         if (idx % 2 === 0) {
-            $('#sc_list .row')
-                .append("<div class='col-lg-9 d-flex justify-content-center infoDiv_col'></div>")
-                .append("<div class='col-lg-3 imgDiv' aria-rowspan='4'></div>");
+            return 'even_row';
         } else {
-            $('#sc_list .row').append("<div class='col-lg-3 imgDiv' aria-rowspan='4'></div>")
-                .append("<div class='col-lg-9 d-flex justify-content-center infoDiv_col'></div>");
+            return 'odd_row';
         }
     });*/
 
-    /*$('#sc_list .row')
-        .append("<div class='col-lg-9 d-flex justify-content-center infoDiv_col'></div>")
-        .append("<div class='col-lg-3 imgDiv'></div>");*/
+    $('#sc_list .row')
+        .append("<div class='col-lg-3 nameDiv'></div>")
+        .append("<div class='col-lg-3 titleDiv'></div>")
+        .append("<div class='col-lg-3 yearDiv'></div>")
+        .append("<div class='col-lg-3 majorDiv'></div>")
+        .append("<div class='col-lg-2 d-flex justify-content-end buttonDiv'></div>");
 
-    /*$('.infoDiv_col').append("<div class='row info_title'></div>")
-        .append("<div class='row info_name'></div>")
-        .append("<div class='row info_year'></div>")
-        .append("<div class='row info_major'></div>");*/
-
-    $('.infoDiv_col_title').append(function (idx) {
-        return `<h3 class="member_title">${members[idx]?.title}</h3>`;
+    $('.nameDiv').append(function (idx) {
+        return `<a class="member_name">${members[idx].name}</a>`;
     });
 
-    $('.infoDiv_col_name').append(function (idx) {
-        return `<p class="member_name">${members[idx]?.name}</p>`;
+    $('.titleDiv').append(function (idx) {
+        return `<a class="member_title">${members[idx].title}</a>`;
     });
 
-    $('.infoDiv_col_year').append(function (idx) {
-        return `<p class="member_year">${members[idx]?.year}</p>`;
+    $('.yearDiv').append(function (idx) {
+        return `<a class="member_year">${members[idx].year}</a>`;
     });
 
-    $('.infoDiv_col_major').append(function (idx) {
-        return `<p class="member_major">${members[idx]?.major}</p>`;
+    $('.majorDiv').append(function (idx) {
+        return `<a class="member_major">${members[idx].major}</a>`;
+    });
+
+    $('.buttonDiv')
+        .append(function (idx) {
+            return `<button type="button" class="btn btn-outline-primary showMore_btn">Show More</button>`
+        });
+
+    $('.showMore_btn').on('click', function () {
+        const member_id = $(this).parents('li').attr("value");
+        location.href = "steeringcommittee_detail.html?member_id=" + member_id;
     });
 }
 
@@ -55,7 +58,3 @@ $.getJSON("/get_all_members").done(function (data) {
         showList(data["data"]);
     }
 });
-
-function addNewMember() {
-    location.href = "steeringcommittee_edit"
-}

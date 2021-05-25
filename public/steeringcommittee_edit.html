@@ -48,5 +48,38 @@
     </nav>
 </section>
 
+<section style="margin-top: 2%">
+    <form action="/new-member" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Title" name="title">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="year" class="form-label">Year</label>
+            <input type="text" class="form-control" id="year" placeholder="Year" name="year">
+        </div>
+        <div class="mb-3">
+            <label for="src" class="form-label">Member Picture</label>
+            <input class="form-control" type="text" name="src" id="src">
+        </div>
+        <div class="mb-3">
+            <label for="bio" class="form-label">Bio</label>
+            <input class="form-control" type="text" name="bio" id="bio">
+        </div>
+        <div class="mb-3">
+            <p id="error_message" style="color: red"></p>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary" style="width: 20%">Save</button>
+        </div>
+    </form>
+</section>
+</body>
+</html>
+
 </body>
 </html>

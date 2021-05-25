@@ -151,6 +151,48 @@ app.post('/delete_member_by_id', (req, res) => {
     )
 });
 
+app.post("/new-member", (req, res) => {
+    const member = {
+        title: req.body.title,
+        name: req.body.name,
+        year: req.body.year,
+        major: req.body.major,
+        bio: req.body.bio,
+        src: req.body.src
+    }
+    console.log("save:" + req.body._id);
+
+    if(req.body._id){
+        Member.updateOne(
+            {_id: req.body._id},
+            {$set: member},
+            {runValidators: true},
+            (err, info) => {
+                if (err) {
+                    console.log(err.message);
+                    res.redirect(`/steeringcommittee_edit.html?error_message=${JSON.stringify(err.errors)}&input=${JSON.stringify(member)}&member_id=${req.body._id}`);
+                }
+                else {
+                    console.log(info);
+                    res.redirect(`/steeringcommittee_detail.html?member_id=${req.body._id}`);
+                }
+            }
+        )
+    }
+    else {
+        const nm = new Member(member);
+        nm.save((err, new_member) => {
+            if (err) {
+                console.log(err);
+                res.redirect('/steeringcommitte_edit.html?error_message=' + err["message"] + '&input=' + JSON.stringify(member));
+            } else {
+                console.log(new_member._id);
+                res.redirect('/steeringcommittee_detail.html?member_id=' + new_member._id);
+            }
+        });
+    }
+});
+
 app.get('/get_member_by_id',
     function (req, res) {
         console.log(req.query.member_id);
