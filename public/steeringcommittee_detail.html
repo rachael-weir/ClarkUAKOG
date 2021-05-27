@@ -37,7 +37,8 @@
                 <div class="navbar-nav">
                     <a class="nav-link active about_page" aria-current="page" href="/about">About</a>
                     <a class="nav-link active program_page" aria-current="page" href="/program">Program</a>
-                    <a class="nav-link active steering_page" aria-current="page" href="/steeringcommittee_list">Steering Committee</a>
+                    <a class="nav-link active steering_page" aria-current="page" href="/steeringcommittee_list">Steering
+                        Committee</a>
                     <a class="nav-link active join_page" aria-current="page" href="/join">Join Us</a>
                     <a class="nav-link active" aria-current="page" href="/contact">Contact Us</a>
                     <a class="nav-link active" aria-current="page" href="/social">Social Media</a>
@@ -49,7 +50,14 @@
 </section>
 
 <section id="member_buttons">
-
+    <div class='buttonDiv btn-light'>
+        <button id='delete_btn' type='button' class='btn btn-danger float-right' style='float: right;' onclick='onDelete()'>
+            Delete
+        </button>
+        <button id='edit_btn' type='button' class='btn btn-warning float-right' style='float: right;' onclick='onEdit()'>
+            Edit
+        </button>
+    </div>
 </section>
 
 <section id="steeringcommittee_detail_body">
