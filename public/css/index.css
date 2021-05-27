@@ -132,6 +132,7 @@ ol {
 }
 
 #footer{
+    margin-top: 3%;
     font-family: 'Balsamiq Sans', sans-serif;
     background-color: var(--pink-lavender);
     padding: 2%;
@@ -139,4 +140,28 @@ ol {
 
 html{
     background-color: var(--baby-pink);
+}
+
+.btn-warning,
+.btn-warning:hover,
+.btn-warning:active,
+.btn-warning:visited{
+    background-color: var(--maximum-yellow-red) !important;
+    color: black;
+}
+
+.btn-danger,
+.btn-danger:hover,
+.btn-danger:active,
+.btn-danger:visited{
+    background-color: var(--light-coral) !important;
+    color: black !important;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:active,
+.btn-success:visited{
+    background-color: var(--tea-green) !important;
+    color: black !important;
 }

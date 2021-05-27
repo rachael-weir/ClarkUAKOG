@@ -25,7 +25,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Configure Mongoose
-mongoose.connect('mongodb://localhost:27017/steeringCommitteeDB', {useNewUrlParser: true, useUnifiedTopology: true}, function () {
+mongoose.connect('mongodb://localhost:27017/steeringCommitteeDB', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}, function () {
     console.log("db connection successful 2");
 });
 mongoose.set("useCreateIndex", true);
@@ -43,13 +46,13 @@ const Member = mongoose.model('Member', memberSchema);
 
 const userSchema = new mongoose.Schema(
     {
-        username:{
+        username: {
             type: String,
             unique: true,
             require: true,
             minlength: 3
         },
-        password:{
+        password: {
             type: String,
             require: true
         }
@@ -98,14 +101,14 @@ app.get("/get_all_members", function (req, res) {
     });
 });
 
-app.get('/get_current_user', function (req,res){
-    if (req.isAuthenticated()){
+app.get('/get_current_user', function (req, res) {
+    if (req.isAuthenticated()) {
         console.log(req.user);
         res.send({
             message: "success",
             data: req.user
         });
-    }else{
+    } else {
         res.send({
             message: "no login",
             data: {}
@@ -132,8 +135,7 @@ app.post('/login', (req, res) => {
             if (err) {
                 console.log(err);
                 res.redirect('login?error=Invalid username or password');
-            }
-            else{
+            } else {
                 const authenticate = passport.authenticate(
                     "local",
                     {
@@ -148,59 +150,69 @@ app.post('/login', (req, res) => {
 
 app.post('/delete_member_by_id', (req, res) => {
     console.log("deletemember2");
-    Member.deleteOne(
-        {"_id": req.body._id},
-        {},
-        (err) => {
-            if (err){
-                res.send({"message":"database error"});
-            }
-            else {
-                res.send({"message": "success"});
-            }
-        }
-    )
-});
-
-app.post("/new-member", (req, res) => {
-    const member = {
-        title: req.body.title,
-        name: req.body.name,
-        year: req.body.year,
-        major: req.body.major,
-        bio: req.body.bio,
-        src: req.body.src
-    }
-    console.log("save:" + req.body._id);
-
-    if(req.body._id){
-        Member.updateOne(
-            {_id: req.body._id},
-            {$set: member},
-            {runValidators: true},
-            (err, info) => {
+    if (req.isAuthenticated()) {
+        Member.deleteOne(
+            {"_id": req.body._id},
+            {},
+            (err) => {
                 if (err) {
-                    console.log(err.message);
-                    res.redirect(`/steeringcommittee_edit.html?error_message=${JSON.stringify(err.errors)}&input=${JSON.stringify(member)}&member_id=${req.body._id}`);
-                }
-                else {
-                    console.log(info);
-                    res.redirect(`/steeringcommittee_detail.html?member_id=${req.body._id}`);
+                    res.send({"message": "database error"});
+                } else {
+                    res.send({"message": "success"});
                 }
             }
         )
-    }
-    else {
-        const nm = new Member(member);
-        nm.save((err, new_member) => {
-            if (err) {
-                console.log(err);
-                res.redirect('/steeringcommitte_edit.html?error_message=' + err["message"] + '&input=' + JSON.stringify(member));
-            } else {
-                console.log(new_member._id);
-                res.redirect('/steeringcommittee_detail.html?member_id=' + new_member._id);
-            }
+    } else {
+        //navigate to login
+        res.send({
+            message: 'Login required!',
+            data: '/login'
         });
+    }
+});
+
+app.post("/new-member", (req, res) => {
+    if (req.isAuthenticated()) {
+        const member = {
+            title: req.body.title,
+            name: req.body.name,
+            year: req.body.year,
+            major: req.body.major,
+            bio: req.body.bio,
+            src: req.body.src
+        }
+        console.log("save:" + req.body._id);
+
+        if (req.body._id) {
+            Member.updateOne(
+                {_id: req.body._id},
+                {$set: member},
+                {runValidators: true},
+                (err, info) => {
+                    if (err) {
+                        console.log(err.message);
+                        res.redirect(`/steeringcommittee_edit.html?error_message=${JSON.stringify(err.errors)}&input=${JSON.stringify(member)}&member_id=${req.body._id}`);
+                    } else {
+                        console.log(info);
+                        res.redirect(`/steeringcommittee_detail.html?member_id=${req.body._id}`);
+                    }
+                }
+            )
+        } else {
+            const nm = new Member(member);
+            nm.save((err, new_member) => {
+                if (err) {
+                    console.log(err);
+                    res.redirect('/steeringcommitte_edit.html?error_message=' + err["message"] + '&input=' + JSON.stringify(member));
+                } else {
+                    console.log(new_member._id);
+                    res.redirect('/steeringcommittee_detail.html?member_id=' + new_member._id);
+                }
+            });
+        }
+    } else {
+        //navigate to login
+        res.redirect('/login.html?=error=Login Required!')
     }
 });
 
@@ -247,7 +259,14 @@ app.get('/steeringcommittee_list', function (req, res) {
 });
 
 app.get('/steeringcommittee_edit', function (req, res) {
+    // if (req.isAuthenticated()) {
     res.sendFile(__dirname + "/public/steeringcommittee_edit.html");
+    // } else {
+    //     res.send({
+    //         message: 'login required!',
+    //         data: '/login'
+    //     });
+    // }
 });
 
 app.get('/steeringcommittee_detail', function (req, res) {

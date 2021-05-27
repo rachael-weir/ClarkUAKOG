@@ -91,8 +91,17 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 const newUser = {
-    username: process.env.USERNAME_SECRET,
+    username: process.env.USERNAME_SECRET
 };
+
+// newUser.save(function (err) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             console.log("All user data saved successfully!")
+//             mongoose.connection.close();
+//         }
+//     });
 
 User.register(
     newUser,
@@ -101,7 +110,6 @@ User.register(
         if (err) {
             console.log(err);
         } else {
-            // write into cookies, authenticate the requests
             console.log("All user data saved successfully!")
             mongoose.connection.close();
         }

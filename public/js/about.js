@@ -14,3 +14,14 @@ $('.about_list').append("<li>Help girls recognize their own strength by providin
         "backgrounds</li>")
     .append("<li>Promote self-confidence, high self-esteem, and healthy connections between girls through creative " +
         "activities, group discussions and guest speakers</li>");
+
+$(document).ready(function (){
+    $.getJSON('/get_current_user').done(function (data){
+        console.log(data);
+        if (data['message'] === 'success'){
+            console.log(data['data']);
+        }else{
+            $('#controls').remove();
+        }
+    });
+});

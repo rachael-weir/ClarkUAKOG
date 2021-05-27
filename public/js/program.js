@@ -22,3 +22,14 @@ $('.general_col').append("<img src='img/current_logo.PNG' class='akog_logo_gener
         "educational, and fun activities. Participants are divided into groups based on age and Mentors lead their " +
         "group through the day's activities. Past themes include: Culture Day, Friendship Day, HERstory Day, and " +
         "Science Day.</p>");
+
+$(document).ready(function (){
+    $.getJSON('/get_current_user').done(function (data){
+        console.log(data);
+        if (data['message'] === 'success'){
+            console.log(data['data']);
+        }else{
+            $('#controls').remove();
+        }
+    });
+});
