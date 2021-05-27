@@ -63,8 +63,15 @@
             <input type="text" class="form-control" id="year" placeholder="Year" name="year">
         </div>
         <div class="mb-3">
-            <label for="src" class="form-label">Member Picture</label>
-            <input class="form-control" type="text" name="src" id="src">
+            <label for="year" class="form-label">Major</label>
+            <input type="text" class="form-control" id="major" placeholder="Major" name="major">
+        </div>
+        <div class="mb-3">
+            <p style="justify-content: left;">Member Picture:</p>
+            <form action="/action_page.php" id="uploadFile">
+                <input type="file" id="myFile" name="filename">
+                <input type="button" id="submit" value="Submit" onClick="UploadFile();"/>
+            </form>
         </div>
         <div class="mb-3">
             <label for="bio" class="form-label">Bio</label>
@@ -74,7 +81,7 @@
             <p id="error_message" style="color: red"></p>
         </div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary" style="width: 20%">Save</button>
+            <button type="submit" class="btn" style="background-color: #cdb4db; width: 25%">Save</button>
         </div>
     </form>
 </section>

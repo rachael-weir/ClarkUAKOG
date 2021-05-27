@@ -20,31 +20,31 @@ function showList(members) {
     });*/
 
     $('#sc_list .row')
-        .append("<div class='col-lg-3 nameDiv'></div>")
-        .append("<div class='col-lg-3 titleDiv'></div>")
-        .append("<div class='col-lg-3 yearDiv'></div>")
+        .append("<div class='col-lg-2 nameDiv'></div>")
+        .append("<div class='col-lg-2 titleDiv'></div>")
+        .append("<div class='col-lg-2 yearDiv'></div>")
         .append("<div class='col-lg-3 majorDiv'></div>")
         .append("<div class='col-lg-2 d-flex justify-content-end buttonDiv'></div>");
 
     $('.nameDiv').append(function (idx) {
-        return `<a class="member_name">${members[idx].name}</a>`;
+        return `<p class="member_name">${members[idx].name}</p>`;
     });
 
     $('.titleDiv').append(function (idx) {
-        return `<a class="member_title">${members[idx].title}</a>`;
+        return `<p class="member_title">${members[idx].title}</p>`;
     });
 
     $('.yearDiv').append(function (idx) {
-        return `<a class="member_year">${members[idx].year}</a>`;
+        return `<p class="member_year">${members[idx].year}</p>`;
     });
 
     $('.majorDiv').append(function (idx) {
-        return `<a class="member_major">${members[idx].major}</a>`;
+        return `<p class="member_major">${members[idx].major}</p>`;
     });
 
     $('.buttonDiv')
         .append(function (idx) {
-            return `<button type="button" class="btn btn-outline-primary showMore_btn">Show More</button>`
+            return `<button type="button" class="btn showMore_btn" style="background-color: #cdb4db;">Show More</button>`
         });
 
     $('.showMore_btn').on('click', function () {
@@ -58,3 +58,7 @@ $.getJSON("/get_all_members").done(function (data) {
         showList(data["data"]);
     }
 });
+
+function addNewMember() {
+    location.href = "steeringcommittee_edit.html"
+}

@@ -1,13 +1,14 @@
 $('#member_buttons').append("<div class='buttonDiv'></div>");
-$('#member_buttons .buttonDiv').append("<button id='delete_btn' type= 'button' class='btn btn-danger float-right' style='float: right;' onclick='onDelete()'>Delete</button>")
-    .append("<button id='edit_btn' type= 'button' class='btn btn-info float-right' style='float: right;' onclick='onEdit()'>Edit</button>");
+$('#member_buttons .buttonDiv').append("<button id='delete_btn' type= 'button' class='btn float-right' style='float: right; background-color: #cdb4db; margin-top: 2%;' onclick='onDelete()'>Delete</button>")
+    .append("<button id='edit_btn' type= 'button' class='btn btn-info float-right' style='float: right; background-color: #cdb4db; margin-top: 2%;' onclick='onEdit()'>Edit</button>");
 
 let member = {
     "title": "title",
     "name": "name",
     "year": "year",
     "major": "major",
-    "bio": "brief bio"
+    "bio": "brief bio",
+    "src": "src"
 }
 
 $('#steeringcommittee_detail_body').empty();
@@ -27,7 +28,7 @@ $('.memberName_row').append("<div class='col-lg-6 member_name'><h5>Name: </h5></
     .append("<div class='col-lg-6 memberName_value'><h5></h5></div>");
 
 $('.memberYear_row').append("<div class='col-lg-6 member_year'><h5>Year: </h5></div>")
-    .append("<div class='col-lg-6 memberyear_value'><h5></h5></div>");
+    .append("<div class='col-lg-6 memberYear_value'><h5></h5></div>");
 
 $('.memberMajor_row').append("<div class='col-lg-6 member_major'><h5>Major: </h5></div>")
     .append("<div class='col-lg-6 memberMajor_value'><h5></h5></div>");

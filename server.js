@@ -3,6 +3,8 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const csvParse = require('csv-parse');
 const mongoose = require('mongoose');
+const nodemailer = require("nodemailer");
+const multiparty = require("multiparty");
 //Add sessions
 const session = require('express-session');
 const passport = require('passport');
@@ -69,6 +71,15 @@ app.listen(3000, function () {
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/public/home.html");
+});
+
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS,
+    },
 });
 
 app.get("/get_all_members", function (req, res) {
@@ -249,4 +260,8 @@ app.get('/contact', function (req, res) {
 
 app.get('/social', function (req, res) {
     res.sendFile(__dirname + "/public/social.html");
+});
+
+app.get('/success', function (req, res) {
+    res.sendFile(__dirname + "/public/success.html");
 });

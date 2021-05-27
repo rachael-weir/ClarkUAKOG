@@ -1,5 +1,4 @@
 function fillMember(member) {
-    $('#src').val(member.src);
     $('#title').val(member.title);
     $('#name').val(member.name);
     $('#year').val(member.year);
@@ -33,11 +32,10 @@ if (member_id) {
 
 $('form').on('submit', function () {
     let errorMessage = null
-    $('#src').removeClass('is-invalid text-danger');
     $.each($('input,textarea'), function () {
         $(this).removeClass('is-invalid text-danger');
     });
-    $.each($('input,textarea,#src'), function () {
+    $.each($('input,textarea'), function () {
         if (!$(this).val()) {
             $(this).addClass('is-invalid text-danger');
             errorMessage = `${$(this).parent().find('label').text()} cannot be empty`;
@@ -57,3 +55,28 @@ $('form').on('submit', function () {
         });
     }
 });
+
+/*
+function UploadFile() {
+    var fileName = $('#uploadFile').val().replace(/.*(\/|\\)/, '');
+    if (fileName != "") {
+        $.ajaxFileUpload({ url: 'AjaxFileUploader.ashx',
+                secureuri: false,
+                fileElementId: 'uploadFile',
+                dataType: 'image',
+                success: function (data, status) {
+                    if (typeof (data.error) != 'undefined') {
+                        if (data.error != '') {
+                            alert(data.error);
+                        } else {
+                            alert('Success');
+                        }
+                    }
+                },
+                error: function (data, status, e) {
+                    alert(e);
+                }
+            }
+        )
+    }
+}*/
