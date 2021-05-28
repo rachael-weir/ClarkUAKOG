@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const csvParse = require('csv-parse');
 const mongoose = require('mongoose');
 const nodemailer = require("nodemailer");
-const multiparty = require("multiparty");
+//const multiparty = require("multiparty");
 //Add sessions
 const session = require('express-session');
 const passport = require('passport');
@@ -212,7 +212,7 @@ app.post("/new-member", (req, res) => {
         }
     } else {
         //navigate to login
-        res.redirect('/login.html?=error=Login Required!')
+        res.redirect('/login.html?error=Login Required!');
     }
 });
 
@@ -258,16 +258,30 @@ app.get('/steeringcommittee_list', function (req, res) {
     res.sendFile(__dirname + "/public/steeringcommittee_list.html");
 });
 
-app.get('/steeringcommittee_edit', function (req, res) {
-    // if (req.isAuthenticated()) {
-    res.sendFile(__dirname + "/public/steeringcommittee_edit.html");
-    // } else {
-    //     res.send({
-    //         message: 'login required!',
-    //         data: '/login'
-    //     });
-    // }
+app.get('/edit_page', function (req, res) {
+    if (req.isAuthenticated()) {
+        res.send({
+            message: "success",
+            url: '/steeringcommittee_edit?member_id=' + req.query._id
+        });
+    } else {
+        //res.redirect('/login.html?error=Login Required!');
+        res.send({
+            message: "login required",
+            url: '/login.html?error=Login Required!'
+        });
+    }
 });
+
+app.get('/steeringcommittee_edit', (req, res) => {
+    console.log(req.query.member_id);
+    if(req.isAuthenticated()) {
+        res.redirect('steeringcommittee_edit.html?member_id='+req.query.member_id)
+        //res.sendFile(__dirname + "/src/steeringcommittee_edit.html");
+    } else {
+        res.redirect('/login.html?error=Login Required!')
+    }
+})
 
 app.get('/steeringcommittee_detail', function (req, res) {
     res.sendFile(__dirname + "/public/steeringcommittee_detail.html");

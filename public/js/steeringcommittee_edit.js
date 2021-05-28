@@ -1,3 +1,14 @@
+$(document).ready(function () {
+    $.getJSON('/get_current_user').done(function (data) {
+        console.log(data);
+        if (data['message'] === 'success') {
+            console.log(data['data']);
+        } else {
+            location.href = 'login.html?error=Login Required!';
+        }
+    });
+});
+
 function fillMember(member) {
     $('#title').val(member.title);
     $('#name').val(member.name);
@@ -17,6 +28,7 @@ if (error_message){
 }
 
 const member_id = urlParams.get("member_id");
+console.log(member_id);
 
 if (member_id) {
     $.getJSON(`/get_member_by_id?member_id=${member_id}`)

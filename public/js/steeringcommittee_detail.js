@@ -1,7 +1,3 @@
-//$('#member_buttons').append("<div class='buttonDiv'></div>");
-//$('#member_buttons .buttonDiv').append("<button id='delete_btn' type= 'button' class='btn btn-danger float-right' style='float: right; background-color: #cdb4db;' onclick='onDelete()'>Delete</button>")
-//    .append("<button id='edit_btn' type= 'button' class='btn btn-info float-right' style='float: right; background-color: #cdb4db;' onclick='onEdit()'>Edit</button>");
-
 let member = {
     "title": "title",
     "name": "name",
@@ -54,10 +50,9 @@ $(document).ready(function () {
         console.log("getJSON");
         $.getJSON('/get_member_by_id?member_id=' + member_id).done(function (data) {
             if (data["message"] === "success") {
-                member=data["data"];
+                member = data["data"];
                 load_member(member);
-            }
-            else{
+            } else {
                 console.log("failed");
             }
         });
@@ -65,7 +60,7 @@ $(document).ready(function () {
 });
 
 function onDelete() {
-    $.post('/delete_member_by_id', {_id: member._id}).done((msg)=>{
+    $.post('/delete_member_by_id', {_id: member._id}).done((msg) => {
         if (msg.message === "success") {
             location.href = "/steeringcommittee_list.html"
         }
@@ -74,20 +69,20 @@ function onDelete() {
 
 function onEdit() {
     //location.href = '/steeringcommittee_edit';
-    // $.post('/steeringcommittee_edit', {_id: member._id}).done((data)=>{
-    //     if (data['message']==='login required!'){
-    //         location.href = '/login.html?error_message=' + data['message'];
-    //     }
-    // });
-    location.href = "steeringcommittee_edit.html?member_id=" + member._id;
+    $.get('/edit_page', {_id: member._id}).then((data) => {
+        console.log(data);
+        location.href = data.url;
+    });
+    //$.get('edit_page', )
+    //location.href = "steeringcommittee_edit.html?member_id=" + member._id;
 }
 
-$(document).ready(function (){
-    $.getJSON('/get_current_user').done(function (data){
+$(document).ready(function () {
+    $.getJSON('/get_current_user').done(function (data) {
         console.log(data);
-        if (data['message'] === 'success'){
+        if (data['message'] === 'success') {
             console.log(data['data']);
-        }else{
+        } else {
             $('.buttonDiv').remove();
         }
     });
