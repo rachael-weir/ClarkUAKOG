@@ -18,6 +18,7 @@ nav{
 }
 
 nav a{
+    font-family: 'Balsamiq Sans', sans-serif;
     color: black;
 }
 
@@ -36,12 +37,15 @@ p {
     text-align: center;
 }
 
-.about_col p{
-    padding: 2%;
+.join_p {
+    font-family: 'Balsamiq Sans', sans-serif;
+    text-align: center;
+    color: blue;
+    text-decoration: underline;
 }
 
-a{
-    font-family: 'Balsamiq Sans', sans-serif;
+.about_col p{
+    padding: 2%;
 }
 
 label {
@@ -92,6 +96,16 @@ ol {
     margin-right: auto;
 }
 
+.akog_logo_join {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 350px;
+    height: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .akog_logo_login {
     margin-top: 2%;
     width: 100px;
@@ -104,7 +118,6 @@ ol {
 
 .akog_logo_mentor {
     margin-top: 2%;
-    margin-bottom: 2%;
     width: 100px;
     height: 100px;
     border-radius: 100%;

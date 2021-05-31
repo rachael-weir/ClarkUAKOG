@@ -3,8 +3,9 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const csvParse = require('csv-parse');
 const mongoose = require('mongoose');
+const multer  = require('multer');
 const nodemailer = require("nodemailer");
-//const multiparty = require("multiparty");
+const multiparty = require("multiparty");
 //Add sessions
 const session = require('express-session');
 const passport = require('passport');
@@ -68,21 +69,87 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './img')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+const upload = multer({ storage: storage })
+
+/*
+app.use('/a',express.static('/b'));
+Above line would serve all files/folders inside of the 'b' directory
+And make them accessible through http://localhost:3000/a.
+*/
+app.use(express.static(__dirname + '/public'));
+app.use('/img', express.static('img'));
+
+app.post('/profile-upload-single', upload.single('profile-file'), function (req, res, next) {
+    // req.file is the `profile-file` file
+    // req.body will hold the text fields, if there were any
+    console.log(JSON.stringify(req.file))
+    var response = '<a href="/">Home</a><br>'
+    response += "Files uploaded successfully.<br>"
+    response += `<img src="${req.file.path}" /><br>`
+    return res.send(response)
+});
+
+var transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    secure: true,
+    auth: {
+        user: "rachweir25@gmail.com",
+        pass: "rachy329",
+    },
+});
+
+// verify connection configuration
+transporter.verify(function (error, success) {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log("Server is ready to take our messages");
+    }
+});
+
+app.post("/send", (req, res) => {
+    let form = new multiparty.Form();
+    let data = {};
+    form.parse(req, function (err, fields) {
+        console.log(fields);
+        Object.keys(fields).forEach(function (property) {
+            data[property] = fields[property].toString();
+        });
+
+        //2. You can configure the object however you want
+        const mail = {
+            from: data.email,
+            to: "rachweir25@gmail.com",
+            subject: data.subject,
+            text: `Name: ${data.name}\nEmail: ${data.email}\nPhone Number: ${data.phone}\n\n${data.message}`,
+        };
+
+        //3.
+        transporter.sendMail(mail, (err, data) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Something went wrong.");
+            } else {
+                res.status(200).send("Email successfully sent to recipient!");
+            }
+        });
+    });
+});
+
 app.listen(3000, function () {
     console.log("server started at 3000");
 });
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/public/home.html");
-});
-
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASS,
-    },
 });
 
 app.get("/get_all_members", function (req, res) {

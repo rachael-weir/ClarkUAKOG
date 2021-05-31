@@ -67,10 +67,10 @@
             <input type="text" class="form-control" id="major" placeholder="Major" name="major">
         </div>
         <div class="mb-3">
-            <p style="justify-content: left;">Member Picture:</p>
-            <form action="/action_page.php" id="uploadFile">
-                <input type="file" id="myFile" name="filename">
-                <input type="button" id="submit" value="Submit" onClick="UploadFile();"/>
+            <form action="/profile-upload-single" id="uploadFile" method="POST" enctype="multipart/form-data">
+                <label>Member Profile Picture</label>
+                <input type="file" id="myFile" name="profile-file">
+                <input type="submit" id="submit" value="Upload"/>
             </form>
         </div>
         <div class="mb-3">

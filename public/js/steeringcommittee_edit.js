@@ -1,4 +1,4 @@
-$(document).ready(function () {
+/*$(document).ready(function () {
     $.getJSON('/get_current_user').done(function (data) {
         console.log(data);
         if (data['message'] === 'success') {
@@ -7,7 +7,7 @@ $(document).ready(function () {
             location.href = 'login.html?error=Login Required!';
         }
     });
-});
+});*/
 
 function fillMember(member) {
     $('#title').val(member.title);
