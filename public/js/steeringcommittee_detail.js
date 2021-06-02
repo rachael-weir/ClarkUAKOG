@@ -1,42 +1,21 @@
 let member = {
-    "title": "title",
-    "name": "name",
-    "year": "year",
-    "major": "major",
-    "bio": "brief bio",
-    "src": "src"
+    title: "title",
+    name: "name",
+    year: "year",
+    major: "major",
+    bio: "brief bio",
+    src: "src"
 }
 
-$('#steeringcommittee_detail_body').empty();
-
-$('#steeringcommittee_detail_body').append("<div class='row img_row'></div>")
-    .append("<div class='row memberTitle_row'></div>")
-    .append("<div class='row memberName_row'></div>")
-    .append("<div class='row memberYear_row'></div>")
-    .append("<div class='row memberMajor_row'></div>")
-    .append("<div class='row memberBio_row'></div>");
-
-$('.img_row').append("<img class='member_img'/>");
-
-$('.memberTitle_row').append("<div class='col-lg-6 member_title'><h3></h3></div>");
-
-$('.memberName_row').append("<div class='col-lg-6 member_name'><h5>Name: </h5></div>")
-    .append("<div class='col-lg-6 memberName_value'><h5></h5></div>");
-
-$('.memberYear_row').append("<div class='col-lg-6 member_year'><h5>Year: </h5></div>")
-    .append("<div class='col-lg-6 memberYear_value'><h5></h5></div>");
-
-$('.memberMajor_row').append("<div class='col-lg-6 member_major'><h5>Major: </h5></div>")
-    .append("<div class='col-lg-6 memberMajor_value'><h5></h5></div>");
-
-$('.memberBio_row').append("<div class='col-lg-6 member_bio'><h5>Bio: </h5></div>")
-    .append("<div class='col-lg-6 memberBio_value'><p></p></div>");
+$('.btn-success').on('click', function (){
+    location.href="steeringcommittee_list.html";
+});
 
 function load_member(member) {
     $('.member_img').attr('src', member.src);
-    $('.member_Title h3').text(member.title);
-    $('.memberName_value h5').text(member.name);
-    $('.memberYear_value h5').text(member.year);
+    $('.member_Title').text(member.title);
+    $('.memberName_value').text(member.name);
+    $('.memberYear_value').text(member.year);
     $('.memberMajor_value').text(member.major);
     $('.memberBio_value').text(member.bio);
 }
@@ -68,13 +47,10 @@ function onDelete() {
 }
 
 function onEdit() {
-    //location.href = '/steeringcommittee_edit';
-    $.get('/edit_page', {_id: member._id}).then((data) => {
+    $.get('/edit_member', {_id: member._id}).then((data) => {
         console.log(data);
         location.href = data.url;
     });
-    //$.get('edit_page', )
-    //location.href = "steeringcommittee_edit.html?member_id=" + member._id;
 }
 
 $(document).ready(function () {
@@ -82,7 +58,9 @@ $(document).ready(function () {
         console.log(data);
         if (data['message'] === 'success') {
             console.log(data['data']);
-        } else {
+            $('.login_page').remove();
+        }else{
+            $('.logout').remove();
             $('.buttonDiv').remove();
         }
     });

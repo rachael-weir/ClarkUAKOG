@@ -170,7 +170,7 @@ app.get("/get_all_members", function (req, res) {
 
 app.get('/get_current_user', function (req, res) {
     if (req.isAuthenticated()) {
-        console.log(req.user);
+        // console.log(req.user);
         res.send({
             message: "success",
             data: req.user
@@ -213,6 +213,11 @@ app.post('/login', (req, res) => {
             }
         }
     )
+});
+
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
 });
 
 app.post('/delete_member_by_id', (req, res) => {
@@ -283,8 +288,7 @@ app.post("/new-member", (req, res) => {
     }
 });
 
-app.get('/get_member_by_id',
-    function (req, res) {
+app.get('/get_member_by_id', function (req, res) {
         console.log(req.query.member_id);
         Member.find({"_id": req.query.member_id}, function (err, data) {
             if (err || data.length === 0) {
@@ -325,7 +329,7 @@ app.get('/steeringcommittee_list', function (req, res) {
     res.sendFile(__dirname + "/public/steeringcommittee_list.html");
 });
 
-app.get('/edit_page', function (req, res) {
+app.get('/edit_member', function (req, res) {
     if (req.isAuthenticated()) {
         res.send({
             message: "success",
@@ -363,5 +367,5 @@ app.get('/social', function (req, res) {
 });
 
 app.get('/success', function (req, res) {
-    res.sendFile(__dirname + "/public/success.html");
+    res.redirect('/home.html?sent=success');
 });

@@ -64,7 +64,9 @@ $(document).ready(function (){
         console.log(data);
         if (data['message'] === 'success'){
             console.log(data['data']);
+            $('.login_page').remove();
         }else{
+            $('.logout').remove();
             $('.newMemBtn').remove();
         }
     });

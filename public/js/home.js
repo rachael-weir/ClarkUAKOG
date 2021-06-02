@@ -68,14 +68,21 @@ function onSocial() {
     location.href = "social";
 }
 
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get("sent")) {
+    $('#success_section').append("<div class='row success_div'></div>");
+    $(".success_div")
+        .append("<p style='padding-top: 1%;'>Your message has been sent to AKOG!</p>")
+        .append("<p style='padding-bottom: 1%;'>We will get to it as soon as we can. Thank you!</p>");
+}
+
 $(document).ready(function (){
     $.getJSON('/get_current_user').done(function (data){
         console.log(data);
         if (data['message'] === 'success'){
-            console.log("fuck yeah");
-            console.log(data['data']);
+            $('.login_page').remove();
         }else{
-            console.log("you thought");
+            $('.logout').remove();
         }
     });
 });

@@ -43,25 +43,72 @@
                     <a class="nav-link active" aria-current="page" href="/contact">Contact Us</a>
                     <a class="nav-link active" aria-current="page" href="/social">Social Media</a>
                     <a class="nav-link active login_page" aria-current="page" href="/login">Sign In</a>
+                    <a class="nav-link active logout" aria-current="page" href="/logout">Sign Out</a>
                 </div>
             </div>
         </div>
     </nav>
 </section>
 
-<section id="member_buttons">
-    <div class='buttonDiv btn-light'>
-        <button id='delete_btn' type='button' class='btn btn-danger float-right' style='float: right;' onclick='onDelete()'>
-            Delete
-        </button>
-        <button id='edit_btn' type='button' class='btn btn-warning float-right' style='float: right;' onclick='onEdit()'>
-            Edit
-        </button>
+<section id="controls">
+    <div class="d-flex justify-content-between">
+        <button class="btn btn-lg btn-success" style="margin-top: 1%;">Back</button>
+        <div  style="margin-top: 1%;">
+            <button id='edit_btn' type='button' class='btn btn-warning'
+                    onclick='onEdit()'>Edit
+            </button>
+            <button id='delete_btn' type='button' class='btn btn-danger'
+                    onclick='onDelete()'>Delete
+            </button>
+        </div>
     </div>
 </section>
 
-<section id="steeringcommittee_detail_body">
+<section id="member_buttons">
 
+</section>
+
+<section id="steeringcommittee_detail_body">
+    <div class='row img_row'>
+        <img class='member_img'/>
+    </div>
+    <div class='row memberTitle_row justify-content-center'>
+        <div class='col-lg-6' style="margin: 1%">
+            <h3 class="member_Title"></h3>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-2">
+            <h5 style="margin-top: 9%;">Name: </h5>
+            <h5 style="margin-top: 9%;">Year: </h5>
+            <h5 style="margin-top: 9%;">Major: </h5>
+            <h5 style="margin-top: 9%;">Bio: </h5>
+        </div>
+        <div class="col-lg-5">
+            <h5 class="memberName_value" style="margin-top: 3%;"></h5>
+            <h5 class="memberYear_value" style="margin-top: 3%;"></h5>
+            <h5 class="memberMajor_value" style="margin-top: 3%;"></h5>
+            <h6 class="memberBio_value" style="margin-top: 3%;"></h6>
+        </div>
+    </div>
+    <!--    <div>-->
+    <!--        <div class='row memberName_row'>-->
+    <!--            <div class='col-lg-6 member_name'><h5>Name: </h5></div>-->
+    <!--            <div class='col-lg-6 memberName_value'><h5>Brenda Partida</h5></div>-->
+    <!--        </div>-->
+    <!--        <div class='row memberYear_row'>-->
+    <!--            <div class='col-lg-6 member_year'><h5>Year: </h5></div>-->
+    <!--            <div class='col-lg-6 memberYear_value'><h5>Junior</h5></div>-->
+    <!--        </div>-->
+    <!--        <div class='row memberMajor_row'>-->
+    <!--            <div class='col-lg-6 member_major'><h5>Major: </h5></div>-->
+    <!--            <div class='col-lg-6 memberMajor_value'><h5>Computer Science</h5></div>-->
+    <!--        </div>-->
+    <!--        <div class='row memberBio_row'>-->
+    <!--            <div class='col-lg-6 member_bio'><h5>Major: </h5></div>-->
+    <!--            <div class='col-lg-6 memberBio_value'><p>I like dancing and a lot of other stuff thank you!!</p></div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 </section>
 
 <footer id="footer">

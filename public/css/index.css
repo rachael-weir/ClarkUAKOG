@@ -178,3 +178,11 @@ html{
     background-color: var(--tea-green) !important;
     color: black !important;
 }
+
+#success_section{
+    background-color: var(--tea-green);
+}
+
+#success_section p{
+    margin: 0%;
+}

@@ -1,13 +1,13 @@
-/*$(document).ready(function () {
-    $.getJSON('/get_current_user').done(function (data) {
+$(document).ready(function (){
+    $.getJSON('/get_current_user').done(function (data){
         console.log(data);
-        if (data['message'] === 'success') {
+        if (data['message'] === 'success'){
             console.log(data['data']);
-        } else {
+        }else{
             location.href = 'login.html?error=Login Required!';
         }
     });
-});*/
+});
 
 function fillMember(member) {
     $('#title').val(member.title);
@@ -40,6 +40,14 @@ if (member_id) {
                 console.log("failed");
             }
         });
+}
+
+function onCancel() {
+    if (member_id){
+        location.href="/steeringcommittee_detail.html?member_id="+member_id;
+    }else {
+        location.href="/steeringcommittee_list.html";
+    }
 }
 
 $('form').on('submit', function () {

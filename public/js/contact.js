@@ -17,7 +17,7 @@ const sendMail = (mail) => {
 };
 
 function onSend() {
-    location.href = "success";
+    location.href = "/success";
 }
 
 $(document).ready(function (){
@@ -25,8 +25,9 @@ $(document).ready(function (){
         console.log(data);
         if (data['message'] === 'success'){
             console.log(data['data']);
+            $('.login_page').remove();
         }else{
-            $('.btn-warning').remove();
+            $('.logout').remove();
         }
     });
 });
