@@ -1,7 +1,6 @@
 require('dotenv').config()
 const express = require("express");
 const bodyParser = require('body-parser');
-const csvParse = require('csv-parse');
 const mongoose = require('mongoose');
 const multer  = require('multer');
 const nodemailer = require("nodemailer");
@@ -44,6 +43,13 @@ const memberSchema = {
 };
 
 const Member = mongoose.model('Member', memberSchema);
+
+const themeSchema = {
+    theme: String,
+    description: String
+};
+
+const Theme = mongoose.model('Theme', themeSchema);
 
 const userSchema = new mongoose.Schema(
     {
@@ -101,8 +107,8 @@ var transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     secure: true,
     auth: {
-        user: "rachweir25@gmail.com",
-        pass: "rachy329",
+        user: "clarkakog.contact@gmail.com",
+        pass: process.env.PASSWORD_SECRET,
     },
 });
 
@@ -123,16 +129,12 @@ app.post("/send", (req, res) => {
         Object.keys(fields).forEach(function (property) {
             data[property] = fields[property].toString();
         });
-
-        //2. You can configure the object however you want
         const mail = {
             from: data.email,
-            to: "rachweir25@gmail.com",
+            to: "clarkakog@gmail.com",
             subject: data.subject,
             text: `Name: ${data.name}\nEmail: ${data.email}\nPhone Number: ${data.phone}\n\n${data.message}`,
         };
-
-        //3.
         transporter.sendMail(mail, (err, data) => {
             if (err) {
                 console.log(err);
@@ -154,6 +156,22 @@ app.get('/', function (req, res) {
 
 app.get("/get_all_members", function (req, res) {
     Member.find(function (err, data) {
+        if (err) {
+            res.send({
+                "message": "error",
+                "data": []
+            });
+        } else {
+            res.send({
+                "message": "success",
+                "data": data
+            })
+        }
+    });
+});
+
+app.get("/get_all_themes", function (req, res) {
+    Theme.find(function (err, data) {
         if (err) {
             res.send({
                 "message": "error",
@@ -305,6 +323,23 @@ app.get('/get_member_by_id', function (req, res) {
         });
     });
 
+app.get('/get_theme_by_id', function (req, res) {
+    console.log(req.query.theme_id);
+    Theme.find({"_id": req.query.theme_id}, function (err, data) {
+        if (err || data.length === 0) {
+            res.send({
+                "message": "internal database error",
+                "data": {}
+            });
+        } else {
+            res.send({
+                "message": "success",
+                "data": data[0]
+            });
+        }
+    });
+});
+
 app.get('/about', function (req, res) {
     res.sendFile(__dirname + "/public/about.html");
 });
@@ -368,4 +403,12 @@ app.get('/social', function (req, res) {
 
 app.get('/success', function (req, res) {
     res.redirect('/home.html?sent=success');
+});
+
+app.get('/themes_list', function (req, res) {
+    res.sendFile(__dirname + "/public/themes_list.html");
+});
+
+app.get('/themes_detail', function (req, res) {
+    res.sendFile(__dirname + "/public/themes_detail.html");
 });

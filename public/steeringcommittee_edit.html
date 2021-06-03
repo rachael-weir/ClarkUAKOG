@@ -37,10 +37,12 @@
                 <div class="navbar-nav">
                     <a class="nav-link active about_page" aria-current="page" href="/about">About</a>
                     <a class="nav-link active program_page" aria-current="page" href="/program">Program</a>
+                    <a class="nav-link active program_page" aria-current="page" href="/themes_list">Weekly Themes</a>
                     <a class="nav-link active steering_page" aria-current="page" href="/steeringcommittee_list">Steering Committee</a>
                     <a class="nav-link active join_page" aria-current="page" href="/join">Join Us</a>
                     <a class="nav-link active" aria-current="page" href="/contact">Contact Us</a>
                     <a class="nav-link active" aria-current="page" href="/social">Social Media</a>
+                    <a class="nav-link active login_page" aria-current="page" href="/login">Sign In</a>
                     <a class="nav-link active logout" aria-current="page" href="/logout">Sign Out</a>
                 </div>
             </div>
@@ -65,13 +67,6 @@
         <div class="mb-3">
             <label for="year" class="form-label">Major</label>
             <input type="text" class="form-control" id="major" placeholder="Major" name="major">
-        </div>
-        <div class="mb-3">
-            <form action="/profile-upload-single" id="uploadFile" method="POST" enctype="multipart/form-data">
-                <label>Member Profile Picture</label>
-                <input type="file" id="myFile" name="profile-file">
-                <input type="submit" id="submit" value="Upload"/>
-            </form>
         </div>
         <div class="mb-3">
             <label for="bio" class="form-label">Bio</label>

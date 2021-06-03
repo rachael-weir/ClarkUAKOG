@@ -3,8 +3,7 @@ let member = {
     name: "name",
     year: "year",
     major: "major",
-    bio: "brief bio",
-    src: "src"
+    bio: "brief bio"
 }
 
 $('.btn-success').on('click', function (){
@@ -12,7 +11,6 @@ $('.btn-success').on('click', function (){
 });
 
 function load_member(member) {
-    $('.member_img').attr('src', member.src);
     $('.member_Title').text(member.title);
     $('.memberName_value').text(member.name);
     $('.memberYear_value').text(member.year);

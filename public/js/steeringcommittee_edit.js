@@ -75,28 +75,3 @@ $('form').on('submit', function () {
         });
     }
 });
-
-/*
-function UploadFile() {
-    var fileName = $('#uploadFile').val().replace(/.*(\/|\\)/, '');
-    if (fileName != "") {
-        $.ajaxFileUpload({ url: 'AjaxFileUploader.ashx',
-                secureuri: false,
-                fileElementId: 'uploadFile',
-                dataType: 'image',
-                success: function (data, status) {
-                    if (typeof (data.error) != 'undefined') {
-                        if (data.error != '') {
-                            alert(data.error);
-                        } else {
-                            alert('Success');
-                        }
-                    }
-                },
-                error: function (data, status, e) {
-                    alert(e);
-                }
-            }
-        )
-    }
-}*/

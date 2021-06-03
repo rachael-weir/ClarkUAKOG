@@ -20,9 +20,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const fs = require('fs');
-const rawdata = fs.readFileSync(__dirname + "/steeringcommitteedata.csv");
+const rawdata_sc = fs.readFileSync(__dirname + "/steeringcommitteedata.csv");
 
-const csvList = parse(rawdata, {
+const csvList_sc = parse(rawdata_sc, {
+    columns: true,
+    skip_empty_lines: true
+});
+
+const rawdata_themes = fs.readFileSync(__dirname + "/themes.csv");
+
+const csvList_themes = parse(rawdata_themes, {
     columns: true,
     skip_empty_lines: true
 });
@@ -46,7 +53,7 @@ const Member = mongoose.model('Member', memberSchema);
 
 const memberList = [];
 
-csvList.forEach(function (member) {
+csvList_sc.forEach(function (member) {
     memberList.push({
         "title": member["title"],
         "name": member["name"],
@@ -61,7 +68,32 @@ Member.insertMany(memberList, {}, function (err) {
     if (err) {
         console.log(err);
     } else {
-        console.log("All list data saved successfully!");
+        console.log("All sc list data saved successfully!");
+        mongoose.connection.close();
+    }
+});
+
+const themeSchema = {
+    theme: String,
+    description: String
+}
+
+const Theme = mongoose.model('Theme', themeSchema);
+
+const themeList = [];
+
+csvList_themes.forEach(function (theme) {
+    themeList.push({
+        "theme": theme["theme"],
+        "description": theme["description"]
+    });
+});
+
+Theme.insertMany(themeList, {}, function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("All theme list data saved successfully!");
         mongoose.connection.close();
     }
 });

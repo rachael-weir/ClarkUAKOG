@@ -32,6 +32,16 @@ h3 {
     text-align: center;
 }
 
+h5 {
+    font-family: 'Balsamiq Sans', sans-serif;
+    text-align: center;
+}
+
+h6 {
+    font-family: 'Balsamiq Sans', sans-serif;
+    text-align: center;
+}
+
 p {
     font-family: 'Balsamiq Sans', sans-serif;
     text-align: center;
@@ -40,6 +50,12 @@ p {
 .join_p {
     font-family: 'Balsamiq Sans', sans-serif;
     text-align: center;
+    color: blue;
+    text-decoration: underline;
+}
+
+.mentee_a {
+    font-family: 'Balsamiq Sans', sans-serif;
     color: blue;
     text-decoration: underline;
 }

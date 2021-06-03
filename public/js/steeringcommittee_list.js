@@ -11,14 +11,6 @@ function showList(members) {
         })
         .append("<div class='row'></div>");
 
-    /*$('#car_list .row').addClass(function (idx) {
-        if (idx % 2 === 0) {
-            return 'even_row';
-        } else {
-            return 'odd_row';
-        }
-    });*/
-
     $('#sc_list .row')
         .append("<div class='col-lg-2 nameDiv'></div>")
         .append("<div class='col-lg-2 titleDiv'></div>")
