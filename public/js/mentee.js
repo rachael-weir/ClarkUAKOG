@@ -6,11 +6,14 @@ $(document).ready(function (){
             $('.login_page').remove();
         }else{
             $('.logout').remove();
-            $('#requests .btn-warning').remove();
         }
     });
 });
 
 $('.btn-success').on('click', function (){
-    location.href="join.html";
+    location.href="join";
+});
+
+$('.btn-warning').on('click', function (){
+    location.href="contact";
 });

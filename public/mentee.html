@@ -50,10 +50,9 @@
     </nav>
 </section>
 
-<section id="requests">
+<section id="controls">
     <div class="d-flex justify-content-between">
         <button class="btn btn-lg btn-success" style="margin-top: 3%;">Back</button>
-        <button class="btn btn-lg btn-warning" style="margin-top: 3%;">View Requests</button>
     </div>
 </section>
 
@@ -64,41 +63,44 @@
 <section id="mentee_body">
     <div class="d-flex justify-content-center row mentee">
         <p>Are you a girl age 9-16 and want to join our program?</p>
-        <p>text: @akog2 to 81010 to join our mailing list, fill out the form below, or email clarkuakog@gmail.com to
+        <p>If you want to be added to our mailing list text: @akog2 to 81010 tor email clarkuakog@gmail.com to
             learn more!</p>
+        <p>Otherwise you could send us a message on our Contact page!</p>
 
-        <div class="col-sm-8">
-            <div class="card">
-                <div class="card-body">
+        <button class="btn btn-lg btn-warning" style="margin: 2%; width: 20%">Contact Us</button>
 
-                    <!-- Makes POST request to /login route -->
-                    <form action="/contact" method="POST">
-                        <div class="form-group">
-                            <label for="name_child">Name (Child)</label>
-                            <input type="name" class="form-control" name="name" id="name_child">
-                        </div>
-                        <div class="form-group">
-                            <label for="name_parent">Name (Parent)</label>
-                            <input type="name" class="form-control" name="name" id="name_parent">
-                        </div>
-                        <div class="form-group">
-                            <label for="age">Age</label>
-                            <input type="number" class="form-control" name="age" id="age">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" class="form-control" name="email" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="phone" class="form-control" name="phone" id="phone">
-                        </div>
-                        <button type="submit" class="btn login_btn mt-3" style="background-color: #cdb4db;">Send</button>
-                    </form>
+<!--        <div class="col-sm-8">-->
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
 
-                </div>
-            </div>
-        </div>
+<!--                    &lt;!&ndash; Makes POST request to /login route &ndash;&gt;-->
+<!--                    <form action="/contact" method="POST">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="name_child">Name (Child)</label>-->
+<!--                            <input type="name" class="form-control" name="name" id="name_child">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="name_parent">Name (Parent)</label>-->
+<!--                            <input type="name" class="form-control" name="name" id="name_parent">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="age">Age</label>-->
+<!--                            <input type="number" class="form-control" name="age" id="age">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="email">Email Address</label>-->
+<!--                            <input type="email" class="form-control" name="email" id="email">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="phone">Phone Number</label>-->
+<!--                            <input type="phone" class="form-control" name="phone" id="phone">-->
+<!--                        </div>-->
+<!--                        <button type="submit" class="btn login_btn mt-3" style="background-color: #cdb4db;">Send</button>-->
+<!--                    </form>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
     </div>
 </section>

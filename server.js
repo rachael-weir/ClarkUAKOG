@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require("express");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const multer  = require('multer');
+const multer = require('multer');
 const nodemailer = require("nodemailer");
 const multiparty = require("multiparty");
 //Add sessions
@@ -32,6 +32,21 @@ mongoose.connect('mongodb://localhost:27017/steeringCommitteeDB', {
     console.log("db connection successful 2");
 });
 mongoose.set("useCreateIndex", true);
+
+const infoPageSchema = {
+    page: String,
+    title: String,
+    body: [{
+        paragraph: String
+    }],
+    sub_title: String,
+    sub_body: [{
+        paragraph: String
+    }],
+    home_description: String
+}
+
+const infoPage = mongoose.model('Page', infoPageSchema);
 
 const memberSchema = {
     title: String,
@@ -83,7 +98,7 @@ const storage = multer.diskStorage({
         cb(null, file.originalname)
     }
 })
-const upload = multer({ storage: storage })
+const upload = multer({storage: storage})
 
 /*
 app.use('/a',express.static('/b'));
@@ -307,21 +322,21 @@ app.post("/new-member", (req, res) => {
 });
 
 app.get('/get_member_by_id', function (req, res) {
-        console.log(req.query.member_id);
-        Member.find({"_id": req.query.member_id}, function (err, data) {
-            if (err || data.length === 0) {
-                res.send({
-                    "message": "internal database error",
-                    "data": {}
-                });
-            } else {
-                res.send({
-                    "message": "success",
-                    "data": data[0]
-                });
-            }
-        });
+    console.log(req.query.member_id);
+    Member.find({"_id": req.query.member_id}, function (err, data) {
+        if (err || data.length === 0) {
+            res.send({
+                "message": "internal database error",
+                "data": {}
+            });
+        } else {
+            res.send({
+                "message": "success",
+                "data": data[0]
+            });
+        }
     });
+});
 
 app.get('/get_theme_by_id', function (req, res) {
     console.log(req.query.theme_id);
@@ -381,8 +396,8 @@ app.get('/edit_member', function (req, res) {
 
 app.get('/steeringcommittee_edit', (req, res) => {
     console.log(req.query.member_id);
-    if(req.isAuthenticated()) {
-        res.redirect('steeringcommittee_edit.html?member_id='+req.query.member_id)
+    if (req.isAuthenticated()) {
+        res.redirect('steeringcommittee_edit.html?member_id=' + req.query.member_id)
         //res.sendFile(__dirname + "/src/steeringcommittee_edit.html");
     } else {
         res.redirect('/login.html?error=Login Required!')
@@ -403,6 +418,58 @@ app.get('/social', function (req, res) {
 
 app.get('/success', function (req, res) {
     res.redirect('/home.html?sent=success');
+});
+
+app.get('/get_page_info', function (req, res) {
+    //console.log(req.query.page);
+
+    infoPage.find(
+        {'page': req.query.page},
+        function (err, data) {
+            if (err || data.length === 0) {
+                res.send({
+                    "message": "internal database error",
+                    "data": {}
+                });
+            } else {
+                res.send({
+                    "message": "success",
+                    "data": data[0]
+                });
+            }
+        }
+    );
+});
+
+app.post('/edit_page', function (req, res) {
+    if (req.isAuthenticated()) {
+        const page = req.body.page;
+
+        //console.log("save:" + page._id);
+
+        if (page._id) {
+            infoPage.updateOne(
+                {_id: page._id},
+                {$set: page},
+                {runValidators: true},
+                (err, info) => {
+                    if (err) {
+                        res.send({
+                            "message": err.message,
+                        });
+                    } else {
+                        res.send({
+                            "message": "success",
+                            "info": info
+                        });
+                    }
+                }
+            )
+        }
+    } else {
+        //navigate to login
+        res.redirect('/login.html?error=Login Required!');
+    }
 });
 
 app.get('/themes_list', function (req, res) {

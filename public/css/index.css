@@ -64,6 +64,10 @@ p {
     padding: 2%;
 }
 
+.about_col_title{
+    padding: 2%;
+}
+
 label {
     font-family: 'Balsamiq Sans', sans-serif;
 }
@@ -201,4 +205,10 @@ html{
 
 #success_section p{
     margin: 0%;
+}
+
+.edit_section {
+    background-color: var(--baby-pink);
+    margin: 1%;
+    padding: 1%;
 }

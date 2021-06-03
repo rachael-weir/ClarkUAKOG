@@ -1,27 +1,25 @@
-$('.program').append("<div class='col-lg-9 program_col'></div>");
+let programData = {};
 
-$('.program_col')
-    .append("<p>AKOG offers two programs for girls age 9-15 during Clark University's academic year. Our Fall semester " +
-        "takes place between October-December and our Spring semester takes place between January- April. AKOG programs " +
-        "occur on Saturdays from 11am-2pm in Atwood Hall at Clark University. </p>")
-    .append("<p>Our Younger Girls program serves 9-12 year olds. It is our largest program, with approximately 100 " +
-        "participants registered annually. The Girls program includes Theme Days intended to foster positive social " +
-        "connections and self-confidence.</p>")
-    .append("<p>Our Older Girls program serves 13-16 year olds. It provides a mature focus for our older participants. " +
-        "The Junior Mentor program includes Theme Days and is specifically designed to help participants develop strong " +
-        "leadership skills.</p>");
+$.getJSON('/get_page_info', {page: "program"}).done(function (data){
+    if (data.message === "success"){
+        programData = data.data;
+        loadPage(programData)
+    }
+})
 
-$('.general_format').append("<div class='col-lg-9 general_col'></div>");
+function loadPage(data){
+    $('#program_title').text(data.title);
 
-$('.general_col').append("<img src='img/current_logo.PNG' class='akog_logo_general'/>")
-    .append("<h3>General Format and Activities of AKOG</h3>")
-    .append("<p>AKOG runs every Saturday of the academic year from 10 AM to 2 PM.</p>")
-    .append("<p>AKOG offers free home made lunch to all participants.</p>")
-    .append("<p>Due to COVID 19, all programs are virtual.</p>")
-    .append("<p>Each Saturday at AKOG has a different theme. The theme of the day is explored through interactive, " +
-        "educational, and fun activities. Participants are divided into groups based on age and Mentors lead their " +
-        "group through the day's activities. Past themes include: Culture Day, Friendship Day, HERstory Day, and " +
-        "Science Day.</p>");
+    $.each(data.body, function (idx){
+        $('.program_col').append(`<p id="${data.body[idx]._id}">${data.body[idx].paragraph}</p>`);
+    })
+
+    $('.general_title').append(`<h3>${data.sub_title}</h3>`);
+
+    $.each(data.sub_body, function (idx){
+        $('.general_col').append(`<p id="${data.sub_body[idx]._id}">${data.sub_body[idx].paragraph}</p>`);
+    })
+}
 
 $(document).ready(function (){
     $.getJSON('/get_current_user').done(function (data){
@@ -29,9 +27,61 @@ $(document).ready(function (){
         if (data['message'] === 'success'){
             console.log(data['data']);
             $('.login_page').remove();
+            $('.btn-danger').hide();
+            $('.btn-success').hide();
         }else{
             $('.logout').remove();
             $('#controls').remove();
         }
     });
 });
+
+function allowEdits(){
+    $('#program_title')
+        .attr('contenteditable', 'true')
+        .addClass('edit_section')
+        .focus();
+
+    $('.program_col')
+        .attr('contenteditable', 'true')
+        .addClass('edit_section');
+
+    $('.general_title')
+        .attr('contenteditable', 'true')
+        .addClass('edit_section');
+
+    $('.general_col')
+        .attr('contenteditable', 'true')
+        .addClass('edit_section');
+
+    $('.btn-warning').hide();
+    $('.btn-success').show();
+    $('.btn-danger').show();
+}
+
+function cancelEdits(){
+    location.reload();
+}
+
+function saveEdits(){
+    programData.title = $('#program_title').html();
+
+    $.each(programData.body, function (idx){
+        const pId = programData.body[idx]._id;
+        programData.body[idx].paragraph = $('#'+pId).html();
+    })
+
+    programData.sub_title = $('.general_title h3').html();
+
+    $.each(programData.sub_body, function (idx){
+        const pId = programData.sub_body[idx]._id;
+        programData.sub_body[idx].paragraph = $('#'+pId).html();
+    })
+
+    $.post('/edit_page', {page: programData}).done(function (data){
+        if (data.message === 'success'){
+            console.log(data.info);
+            location.href = 'program'
+        }
+    })
+}
