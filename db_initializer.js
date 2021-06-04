@@ -126,15 +126,6 @@ const newUser = {
     username: process.env.USERNAME_SECRET
 };
 
-// newUser.save(function (err) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             console.log("All user data saved successfully!")
-//             mongoose.connection.close();
-//         }
-//     });
-
 User.register(
     newUser,
     process.env.PASSWORD_SECRET,

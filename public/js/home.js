@@ -79,11 +79,6 @@ if (urlParams.get("sent")) {
     window.history.replaceState({}, document.title, "/");
 }
 
-// if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
-//     console.info( "This page is reloaded" );
-//     location.href = "/";
-// }
-
 $(document).ready(function (){
     $.getJSON('/get_current_user').done(function (data){
         console.log(data);
