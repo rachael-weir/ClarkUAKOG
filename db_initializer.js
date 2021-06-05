@@ -60,7 +60,6 @@ csvList_sc.forEach(function (member) {
         "year": member["year"],
         "major": member["major"],
         "bio": member["bio"],
-        "url": member["url"]
     });
 });
 

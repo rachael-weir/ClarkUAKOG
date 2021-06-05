@@ -53,8 +53,7 @@ const memberSchema = {
     name: String,
     year: String,
     major: String,
-    bio: String,
-    url: String
+    bio: String
 };
 
 const Member = mongoose.model('Member', memberSchema);
@@ -283,8 +282,7 @@ app.post("/new-member", (req, res) => {
             name: req.body.name,
             year: req.body.year,
             major: req.body.major,
-            bio: req.body.bio,
-            src: req.body.src
+            bio: req.body.bio
         }
         console.log("save:" + req.body._id);
 
