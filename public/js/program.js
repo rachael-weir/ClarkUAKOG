@@ -1,4 +1,10 @@
-let programData = {};
+let programData = {
+    page: "program",
+    title: "title",
+    body: [{paragraph: "paragraph"},{paragraph: "paragraph"},{paragraph: "paragraph"}],
+    sub_title: "sub_title",
+    sub_body: [{paragraph: "paragraph"},{paragraph: "paragraph"},{paragraph: "paragraph"},{paragraph: "paragraph"}]
+};
 
 $.getJSON('/get_page_info', {page: "program"}).done(function (data){
     if (data.message === "success"){
