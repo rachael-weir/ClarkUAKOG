@@ -1,15 +1,15 @@
-let programData = {
-    page: "program",
-    title: "title",
-    body: [{paragraph: "paragraph"},{paragraph: "paragraph"},{paragraph: "paragraph"}],
-    sub_title: "sub_title",
-    sub_body: [{paragraph: "paragraph"},{paragraph: "paragraph"},{paragraph: "paragraph"},{paragraph: "paragraph"}]
-};
+let programData = {};
+
+$('.general_col').append("<p>AKOG takes place at Atwood Hall and offers two programs. The younger girl program serves " +
+    "ages 9-12, while the older girl program serves ages 13-16. Our programs run Saturdays 11am - 2pm. Additionally, " +
+    "AKOG provides free nutritious lunch for all girls. AKOG registration is always open! There is no deadline; we " +
+    "always accept new applications.</p>");
 
 $.getJSON('/get_page_info', {page: "program"}).done(function (data){
     if (data.message === "success"){
         programData = data.data;
         loadPage(programData)
+        console.log("reading data");
     }
 })
 
