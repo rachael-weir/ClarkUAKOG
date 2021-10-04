@@ -122,7 +122,7 @@ var transporter = nodemailer.createTransport({
     secure: true,
     auth: {
         user: "clarkakog.contact@gmail.com",
-        pass: process.env.PASSWORD_SECRET,
+        pass: process.env.CONTACT_PASSWORD_SECRET,
     },
 });
 

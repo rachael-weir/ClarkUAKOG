@@ -19,6 +19,53 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+mongoose.connect('mongodb://localhost:27017/steeringCommitteeDB',
+    {useNewUrlParser: true}, function () {
+        console.log("db connection successful");
+    });
+mongoose.set("useCreateIndex", true);
+
+const userSchema = new mongoose.Schema(
+    {
+        username: {
+            type: String,
+            unique: true,
+            require: true,
+            minlength: 3
+        },
+        password: {
+            type: String,
+            require: true
+        }
+    }
+);
+
+userSchema.plugin(passportLocalMongoose);
+
+const User = mongoose.model('User', userSchema);
+
+//Configure passport
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+const newUser = {
+    username: process.env.USERNAME_SECRET
+};
+
+User.register(
+    newUser,
+    process.env.PASSWORD_SECRET,
+    function (err, user) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("All user data saved successfully!")
+            mongoose.connection.close();
+        }
+    }
+);
+
 const fs = require('fs');
 const rawdata_sc = fs.readFileSync(__dirname + "/steeringcommitteedata.csv");
 
@@ -33,12 +80,6 @@ const csvList_themes = parse(rawdata_themes, {
     columns: true,
     skip_empty_lines: true
 });
-
-mongoose.connect('mongodb://localhost:27017/steeringCommitteeDB',
-    {useNewUrlParser: true}, function () {
-        console.log("db connection successful");
-    });
-mongoose.set("useCreateIndex", true);
 
 const memberSchema = {
     title: String,
@@ -96,44 +137,3 @@ Theme.insertMany(themeList, {}, function (err) {
         mongoose.connection.close();
     }
 });
-
-const userSchema = new mongoose.Schema(
-    {
-        username: {
-            type: String,
-            unique: true,
-            require: true,
-            minlength: 3
-        },
-        password: {
-            type: String,
-            require: true
-        }
-    }
-);
-
-userSchema.plugin(passportLocalMongoose);
-
-const User = mongoose.model('User', userSchema);
-
-//Configure passport
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-const newUser = {
-    username: process.env.USERNAME_SECRET
-};
-
-User.register(
-    newUser,
-    process.env.PASSWORD_SECRET,
-    function (err, user) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("All user data saved successfully!")
-            mongoose.connection.close();
-        }
-    }
-);
