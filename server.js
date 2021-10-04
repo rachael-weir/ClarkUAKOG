@@ -99,24 +99,6 @@ const storage = multer.diskStorage({
 })
 const upload = multer({storage: storage})
 
-/*
-app.use('/a',express.static('/b'));
-Above line would serve all files/folders inside of the 'b' directory
-And make them accessible through http://localhost:3000/a.
-*/
-app.use(express.static(__dirname + '/public'));
-app.use('/img', express.static('img'));
-
-app.post('/profile-upload-single', upload.single('profile-file'), function (req, res, next) {
-    // req.file is the `profile-file` file
-    // req.body will hold the text fields, if there were any
-    console.log(JSON.stringify(req.file))
-    var response = '<a href="/">Home</a><br>'
-    response += "Files uploaded successfully.<br>"
-    response += `<img src="${req.file.path}" /><br>`
-    return res.send(response)
-});
-
 var transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     secure: true,
@@ -160,7 +142,7 @@ app.post("/send", (req, res) => {
     });
 });
 
-app.listen(3000, function () {
+app.listen(8080, function () {
     console.log("server started at 3000");
 });
 
@@ -253,7 +235,6 @@ app.get('/logout', (req, res) => {
 });
 
 app.post('/delete_member_by_id', (req, res) => {
-    console.log("deletemember2");
     if (req.isAuthenticated()) {
         Member.deleteOne(
             {"_id": req.body._id},

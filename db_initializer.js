@@ -25,6 +25,21 @@ mongoose.connect('mongodb://localhost:27017/steeringCommitteeDB',
     });
 mongoose.set("useCreateIndex", true);
 
+const fs = require('fs');
+const rawdata_sc = fs.readFileSync(__dirname + "/steeringcommitteedata.csv");
+
+const csvList_sc = parse(rawdata_sc, {
+    columns: true,
+    skip_empty_lines: true
+});
+
+const rawdata_themes = fs.readFileSync(__dirname + "/themes.csv");
+
+const csvList_themes = parse(rawdata_themes, {
+    columns: true,
+    skip_empty_lines: true
+});
+
 const userSchema = new mongoose.Schema(
     {
         username: {
@@ -66,21 +81,6 @@ User.register(
     }
 );
 
-const fs = require('fs');
-const rawdata_sc = fs.readFileSync(__dirname + "/steeringcommitteedata.csv");
-
-const csvList_sc = parse(rawdata_sc, {
-    columns: true,
-    skip_empty_lines: true
-});
-
-const rawdata_themes = fs.readFileSync(__dirname + "/themes.csv");
-
-const csvList_themes = parse(rawdata_themes, {
-    columns: true,
-    skip_empty_lines: true
-});
-
 const memberSchema = {
     title: String,
     name: String,
@@ -100,7 +100,7 @@ csvList_sc.forEach(function (member) {
         "name": member["name"],
         "year": member["year"],
         "major": member["major"],
-        "bio": member["bio"],
+        "bio": member["bio"]
     });
 });
 
